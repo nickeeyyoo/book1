@@ -1,0 +1,19 @@
+grammar org.xtext.example.mydsl1.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl1/MyDsl"
+
+
+	
+Book:
+	'title' name=ID 
+	(sections+=Section)*
+	;
+
+Section:
+	'section' name=ID
+	(STRING | 'ref' sectionReferences+=[Section|SectionReference])*
+;
+
+SectionReference:
+	ID('.'ID)?
+;
